@@ -21,6 +21,15 @@
 	50%{bottom: 4%;}
 	100%{bottom: 5%;}
 }
+
+.tts_arrow{
+	animation: tts_arrow 1s infinite;
+}
+@keyframes tts_arrow{
+	0%{bottom: 3%;}
+	50%{bottom: 2%;}
+	100%{bottom: 3%;}
+}
 /*发现不同的动画*/
 
 .part2_1_b1{
@@ -34,4 +43,25 @@
 .levin_part2_3_b1{
 	transition: all 1s; 
 	transform: scale(1.3);
+}
+.jiaqu1_b1{
+	transition: all 1s; 
+	transform: scale(1.3);
+}
+.anquan1_b1{
+	transition: all 1s; 
+	transform: scale(1.3);
+}
+
+/*p6的动画*/
+.levin_part6_top1{
+	transition: all 1s;
+	transform: scale(1) translateY(0rem);
+}
+
+
+/*驾趣的动画*/
+.jiaqu1_img1,.anquan1_img1{
+	transition: all 0.5s;
+	transform: scale(1);
 }

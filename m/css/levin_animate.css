@@ -1,18 +1,16 @@
-.loding3_main_top{
-	transform: scale(0);
+.loding_wenzi_show{
+	transition: all 1s; 
+	transform: scale(1) translateY(0);
 }
-.loding3_main_top_ani{
-	transition: all 1s;
-	transform: scale(1);
+.kaishitansuo_arrow{
+	animation: arrow 1s infinite;
 }
-.ksts_btn_cha{
-	transform: scale(1);
-	transition: all 1s;
+@keyframes arrow{
+	from{top: 0.3rem;}
+	to{top: 0.4rem;}
 }
-.loding2_2_ani{
-	transition: all 2s;
-	transform: scale(0.5);
-}
+
+
 .car_go_arrow{
 	animation: car_go_arrow 1s infinite;
 }
@@ -65,3 +63,37 @@
 	transition: all 0.5s;
 	transform: scale(1);
 }
+
+/*中控*/
+.levin_part7_b1{
+	transition: all 1s;
+	transform: scale(1) translateY(0);
+}
+
+/*升级*/
+.shengji_move1{
+	display: block;
+	animation: shengjimove 2s linear infinite;
+}
+@keyframes shengjimove{
+	0%{top: 0%;
+	opacity: 1;
+	}
+	50%{
+		top: -2%;
+		opacity: 0.5;
+	}
+	75%{
+		top: -4%;
+		opacity: 0.2;
+	}
+	100%{
+		top: 0%;
+	}
+}
+
+.shoufu_box1,.youxian_box1{
+	transition: all 1s; 
+	transform: scale(1) translateY(0);
+}
+

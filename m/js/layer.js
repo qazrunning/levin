@@ -1,88 +1,98 @@
 $(document).ready(function(){
-	loding();
-	function loding(){
-		var loding_num = 0;
-		var loding_time = setInterval(function(){
-			loding_num = loding_num +1;
-			$(".loding_number span").text(loding_num)
-			if(loding_num == 100){
-				clearInterval(loding_time)
-			};
-		},15);
-		$(".loding_number span").text();
-		$(".zhezhao").animate({height:"0rem"},1500,function(){
-			$(".loding_mid").hide();
-			$(".loding2_2").show();
-			var loding_2 = 0;
-			var _loding_2_2 = 31;
-			var loding_2_1 = setInterval(function(){
-				loding_2 = loding_2 +0.1;
-				$(".loding2").css("opacity",loding_2)
-			},100);
-			//
-			var loding_2_2 = setInterval(function(){
-				_loding_2_2 = _loding_2_2 +1;
-				var af_src = "images/loading_af/合成 1_000"+_loding_2_2+".jpg"
-				$(".loding_af").attr("src",af_src)
-				if(_loding_2_2 == 55){
-					clearInterval(loding_2_2);
-				}
-			},150)
-			setTimeout(function(){
-				clearInterval(loding_2_1);
-					$(".loding2").hide();
-					$(".loding2_2").hide();
-					$(".loding1").hide();
-					$(".loding3").show();
-			},3000)
+	// 加载资源
+    (function () {
+        var loader = new PxLoader();
+        (function () {
+            var i, name;
+//          for (i = 0; i < 24; i++) {
+//
+//              if (i < 10) {
+//                  name = './images/loading/segments/Segment-09_0000' + i + '.jpg';
+//              } else {
+//                  name = './images/loading/segments/Segment-09_000' + i + '.jpg';
+//              }
+//              loader.addImage(name);
+//          }
+            
+            //预加载大灯的过度
+            var _big_light = 20;
+            for (_big_light;_big_light<54;_big_light++){
+            	name = "images/big_light/合成 1_002"+_big_light+".jpg";
+            	loader.addImage(name);
+            }
+            //预加载车冲出过度的序列帧
+            var _car_go = 20;
+            for (_car_go;_car_go<35;_car_go++){
+            	name = "images/car_go/01过渡-3_001"+_car_go+".jpg";
+            	loader.addImage(name);
+            }
+            var _neishi = 85;
+            for (_neishi;_neishi<94;_neishi++){
+            	name = "images/neishi/合成 1_002"+_neishi+".jpg";
+            	loader.addImage(name);
+            }
+            var _zhongkong = 45;
+            for(_zhongkong;_zhongkong<55;_zhongkong++){
+            	name = "images/zhongkong/合成 1_006"+_zhongkong+".jpg";
+            	loader.addImage(name);
+            }
+            var _loding = 40;
+            for(_loding;_loding<59;_loding++){
+            	name = "images/loading_af/合成 1_000"+_loding+".jpg";
+            	loader.addImage(name);
+            }
+            var black_l = 70;
+            for(black_l;black_l<74;black_l++){
+            	name = "images/01-3_000"+black_l+".jpg";
+            	loader.addImage(name);
+            }
+            var _zhineng = 583;
+            for(_zhineng;_zhineng<605;_zhineng++){
+            	name = "images/zhineng/合成 1_00"+_zhineng+".jpg";
+            	loader.addImage(name);
+            }
+        }());
+
+
+        loader.addProgressListener(function (e) {
+            var percent = Math.round(e.completedCount / e.totalCount * 100);
+            $('.loding_num').text(percent + '%');
+            $('.loukong_height').height($('.loding_box_img').height() * e.completedCount / e.totalCount)
+        });
+
+        loader.addCompletionListener(function () {
+        	$("#loding").hide();
+        	$("#loding_af").show(function(){
+        		var num_l = 40;
+        		var l_af_set = setInterval(function(){
+        			num_l = num_l + 1;
+        			var l_src = "images/loading_af/合成 1_000"+num_l+".jpg";
+        			$(".l_af").attr("src",l_src);
+        			if(num_l >=59){
+        				clearInterval(l_af_set);
+        				$("#loding_af").hide();
+        				$(".levin_part1").show(function(){
+        					var l_part1 = 70;
+        					var l_part1_set = setInterval(function(){
+        						l_part1 = l_part1 + 1;
+        						$(".levin_part1_img").attr("src","images/01-3_000"+l_part1+".jpg");
+        						if(l_part1 >= 74){
+        							clearInterval(l_part1_set);
+        							$(".levin_part1_b").fadeIn(1000);$(".levin_part1_title").fadeIn(1000)
+        							$(".levin_part1_b").addClass("loding_wenzi_show");
+        							$(".levin_part1_title").addClass("loding_wenzi_show");
+        							$(".levin_part1").css("z-index",7);
+        							
+        						}
+        					},88)
+        				})
+        				
+        			}
+        		},100)
+        	})
 			
-		})
-	}
-	//这里为2.5s后的车辆显示动画
-	
-	setTimeout(function(){
-		loding_che()
-	},5000)
-	function loding_che(){
-		$(".loding3_1").fadeIn(500,function(){
-			$(".loding3_1").addClass("loding3_1_1");
-		});
-		setTimeout(function(){
-			$(".loding3_main_b").animate({bottom:"0rem"},500);
-			$(".loding3_main_top").addClass("loding3_main_top_ani");
-			$(".ksts_btn").addClass("ksts_btn_cha");
-			$(".loding3_5").fadeIn(1000)
-		},400)
-	}
-	//这里我也不记得执行了多久 了 5000 + 2000
-	$(".ksts_btn").click(function(){
-		$(".loding3_main_b").animate({bottom:"-6rem"},500);
-		$(".loding3_main_top").fadeOut(500)
-		var sca = 1;
-		var click_btn =  setInterval(function(){1;
-			sca = sca + 0.1;
-			$(".loding3_main_top").css("transform","scale("+sca+")");
-		},40);
-		setTimeout(function(){
-			clearInterval(click_btn);
-			$(".ksts_btn").fadeOut(100);
-			$(".car_go_title1").fadeIn(1000);
-			$(".car_go_title2").fadeIn(1000);
-		},500);
-		
-		$(".loding3_bg").hide();
-		$(".loding_car_go").show();
-		var go_num = 20;
-		var car_go = setInterval(function(){
-			go_num = go_num + 1;
-			var csr_go_src = "images/car_go/01过渡-3_001"+go_num+".jpg"
-			$(".car_go_1").attr("src",csr_go_src);
-			if(go_num == 34){
-				clearInterval(car_go);
-				$(".car_go_arrow").show();
-				
-			}
-		},100);
-	});
+        });
+        loader.start();
+    }());
 		
 })
